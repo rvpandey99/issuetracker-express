@@ -1,0 +1,36 @@
+extends base.pug
+
+block content
+    h3
+        a(href='/issues') View Issues
+    br
+
+    h4 Add an issue.
+    form(action='/add-issue', method='post')
+        p Created Date:
+        input(type='date' name='createdDate', id='theDate')
+        p Description:
+        input(type='text-area' name='description')
+        p Severity:                
+        select(name= 'severity')
+            option(value='Minor') Minor
+            option(value='Major') Major
+            option(value='Critical') Critical
+        p Status:
+        select(name= 'status')
+            option(value='Open') Open
+            option(value='In Progress') In Progress
+            option(value='Closed') Closed        
+        p Resolved Date:
+        input(type='date' name='resolvedDate')
+        input(type='submit' name='done')
+
+    script.
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;       
+        document.getElementById("theDate").value = today;

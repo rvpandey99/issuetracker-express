@@ -1,0 +1,29 @@
+extends base.pug
+
+block content
+    h3
+        a(href='/issues') View Issues
+    h3 Update the Issue with id: #{issue.id}
+    - var url= issue.id;
+    form(action='/update/'+ url, method='post')
+        p Created Date:
+        input(type='date' name='createdDate', value=issue.createdDate)
+        p Description:
+        input(type='text' name='description', value=issue.description)
+        p Severity:
+        //- input(type='text' name='severity', value=issue.severity)
+        select(name= 'severity')
+            option(value=issue.severity, selected) #{issue.severity}
+            option(value='Minor') Minor
+            option(value='Major') Major
+            option(value='Critical') Critical
+        p Status:
+        select(name= 'status', selected=issue.status)
+            option(value=issue.status, selected) #{issue.status}
+            option(value='Open') Open
+            option(value='In Progress') In Progress
+            option(value='Closed') Closed 
+        p Resolved Date:
+        input(type='date' name='resolvedDate', value=issue.resolvedDate)
+        input(type='submit' name='updated')
+    

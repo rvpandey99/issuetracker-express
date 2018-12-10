@@ -1,0 +1,24 @@
+extends base.pug
+
+block content
+    h3
+        a(href='/add-issue') Add Issue
+    ul
+        for items in issues
+            li 
+                ul
+                    //- for lol in items
+                    //-     li= lol
+                    li Issue id: #{items.id}
+                    li Created Date: #{items.createdDate}
+                    li Description: #{items.description}
+                    li Severity: #{items.severity}
+                    li Status: #{items.status}
+                    li Resolved Date: #{items.resolvedDate}
+                    li 
+                        - var url = items.id;
+                        a(href='/update/' + url) Update
+                    li
+                        form(action='/issues/'+ url, method='post')
+                            input(type='submit', name='delete',  value="Delete")
+                
